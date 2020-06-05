@@ -24,6 +24,8 @@
 	</header>
 	<h3>Currently serving:</h3>
 	<p><a href="/cats/"><?php echo count(array_diff(glob("./cats/*"), glob("./cats/*php"))) ?> cats!</a></p>
+	<p><a href="/possums/"><?php echo count(array_diff(glob("./possums/*"), glob("./possums/*php"))) ?> possums!</a></p>
+	<p><a href="/raccoons/"><?php echo count(array_diff(glob("./raccoons/*"), glob("./raccoons/*php"))) ?> raccoons!</a></p>
 </body>
 
 </html>
