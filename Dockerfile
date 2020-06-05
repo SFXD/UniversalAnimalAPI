@@ -77,7 +77,9 @@ COPY configs/mime.types /etc/nginx/mime.types
 COPY configs/fastcgi.conf /etc/nginx/fastcgi.conf
 COPY configs/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 
-COPY index.php .
+# cats
+COPY animals/cats ./cats
+COPY index.php ./cats/index.php
 
 # add supervisord conf
 COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
