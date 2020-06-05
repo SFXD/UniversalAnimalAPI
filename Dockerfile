@@ -77,6 +77,8 @@ COPY configs/mime.types /etc/nginx/mime.types
 COPY configs/fastcgi.conf /etc/nginx/fastcgi.conf
 COPY configs/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 
+# homepage
+COPY homepage.php ./index.php
 # cats
 COPY animals/cats ./cats
 COPY index.php ./cats/index.php
