@@ -78,17 +78,18 @@ COPY configs/fastcgi.conf /etc/nginx/fastcgi.conf
 COPY configs/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 
 # cats
-COPY animals/cats ./cats
-COPY index.php ./cats/index.php
+#COPY animals/cats ./cats
+#COPY index.php ./cats/index.php
 # possums
-COPY animals/possums ./possums
-COPY index.php ./possums/index.php
+#COPY animals/possums ./possums
+#COPY index.php ./possums/index.php
 # raccoons
-COPY animals/raccoons ./raccoons
-COPY index.php ./raccoons/index.php
+#COPY animals/raccoons ./raccoons
+#COPY index.php ./raccoons/index.php
 
 # homepage
-COPY homepage.php ./index.php
+COPY animal.php .
+COPY index.php .
 
 # add supervisord conf
 COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

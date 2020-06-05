@@ -1,18 +1,11 @@
-<?php
-	$files = array_diff(glob("./*"), glob("./*php"));
-	$file = substr($files[array_rand($files)], 2);
-	$animal = end(explode('/', trim(getcwd(), " /")));
-	$base = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/" . $animal . "/";
-?>
-
 <html lang='en'>
 
 <head>
-	<title><?php echo ucwords("Random " . $animal . "!")?></title>
+	<title><?php echo ucwords("Random Animals!")?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Galen Guyer">
-	<meta name="description" content="Get a random <?php echo substr($animal, 0, -1) ?> pic!" />
+	<meta name="description" content="Get a bunch of random animal pics!" />
 	<style>
 		body {
 			font-family: Arial, Helvetica, sans-serif;
@@ -27,10 +20,12 @@
 
 <body>
 	<header>
-		<h1>Hey look! It's a random <?php echo substr($animal, 0, -1) ?>!</h1>
+		<h1>Hey look! It's a bunch of random animals!</h1>
 	</header>
-	<img src="<?php echo $file ?>"></img>
-	<p>Permalink: <a href="<?php echo ($base . $file)?>"><?php echo ($base . $file)?></a></p>
+	<h3>Currently serving:</h3>
+	<p><a href="/cats/"><?php echo count(array_diff(glob("./cats/*"), glob("./cats/*php"))) ?> cats!</a></p>
+	<p><a href="/possums/"><?php echo count(array_diff(glob("./possums/*"), glob("./possums/*php"))) ?> possums!</a></p>
+	<p><a href="/raccoons/"><?php echo count(array_diff(glob("./raccoons/*"), glob("./raccoons/*php"))) ?> raccoons!</a></p>
 </body>
 
 </html>

@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  randimals:
+    image: universalanimalapi:latest
+    container_name: randimals
+    restart: always
+    expose:
+      - "80"
+    volumes:
+      - type: volume
+        source: randimals
+        target: /var/www/html
+
+volumes:
+  randimals:
