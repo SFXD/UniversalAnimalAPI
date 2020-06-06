@@ -88,8 +88,7 @@ COPY configs/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 #COPY index.php ./raccoons/index.php
 
 # homepage
-COPY animal.php .
-COPY index.php .
+COPY *.php ./
 
 # add supervisord conf
 COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

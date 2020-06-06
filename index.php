@@ -1,11 +1,30 @@
-<html lang='en'>
+<?php
+$uri = $_SERVER['REQUEST_URI'];
+$base = explode('/', trim($uri, " /"))[0];
 
+if (getenv("PROTOCOL") !== null) {
+    $proto = getenv("PROTOCOL");
+}
+else {
+    $proto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
+}
+$host = $proto . "://$_SERVER[HTTP_HOST]/";
+
+if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
+{
+	header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+	include('404.php');
+	die();
+}
+
+echo <<< EOT
+<html lang='en'>
 <head>
-	<title><?php echo ucwords("Random Animals!")?></title>
+	<title>Random Shitposts!</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Galen Guyer">
-	<meta name="description" content="Get a bunch of random animal pics!" />
+	<meta name="description" content="Get a random shitpost!" />
 	<style>
 		body {
 			font-family: Arial, Helvetica, sans-serif;
@@ -20,12 +39,10 @@
 
 <body>
 	<header>
-		<h1>Hey look! It's a bunch of random animals!</h1>
+		<h1>Hey look! It's a random shitpost!</h1>
 	</header>
-	<h3>Currently serving:</h3>
-	<p><a href="/cats/"><?php echo count(array_diff(glob("./cats/*"), glob("./cats/*php"))) ?> cats!</a></p>
-	<p><a href="/possums/"><?php echo count(array_diff(glob("./possums/*"), glob("./possums/*php"))) ?> possums!</a></p>
-	<p><a href="/raccoons/"><?php echo count(array_diff(glob("./raccoons/*"), glob("./raccoons/*php"))) ?> raccoons!</a></p>
-</body>
-
+	<p>$base</p>
+	</body>
 </html>
+EOT;
+?>
