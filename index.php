@@ -20,6 +20,7 @@ if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
 
 # Root url
 if ($uri == "/"){
+	$dog_count = count(glob("./animals/dogs/*"));
 	$cat_count = count(glob("./animals/cats/*"));
 	$possum_count = count(glob("./animals/possums/*"));
 	$raccoon_count = count(glob("./animals/raccoons/*"));
@@ -50,6 +51,7 @@ if ($uri == "/"){
 		<h1>Hey look! It's a bunch of random animals!</h1>
 	</header>
 	<h3>Currently serving:</h3>
+	<p><a href="/dogs/">$dog_count dogs!</a></p>
 	<p><a href="/cats/">$cat_count cats!</a></p>
 	<p><a href="/possums/">$possum_count possums!</a></p>
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
