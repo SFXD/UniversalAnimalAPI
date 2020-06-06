@@ -11,14 +11,14 @@ $uri = $_SERVER['REQUEST_URI'];
 $base = explode('/', trim($uri, " /"))[0];
 
 # If the animal folder doesn't exist, return a nice 404 page
-if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
+if (!(file_exists("./animals/$uri") && is_dir("./animals/$uri")))
 {
 	header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
 	include('404.php');
 	die();
 }
 
-#
+# Raw endpoint
 if (trim($uri, "/") == ($base . "/raw")) {
 	$files = glob("./animals/$base/*");
 	$file = substr($files[array_rand($files)], 2);
@@ -26,32 +26,50 @@ if (trim($uri, "/") == ($base . "/raw")) {
 	echo $host.$file;
 	die();
 }
-echo <<< EOT
-<html lang='en'>
-<head>
-	<title>Random Shitposts!</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Galen Guyer">
-	<meta name="description" content="Get a random shitpost!" />
-	<style>
-		body {
-			font-family: Arial, Helvetica, sans-serif;
-			text-align: center;
-		}
-		img {
-			max-width: 90vw;
-			max-height: 70vh;
-		}
-	</style>
-</head>
+# JSON endpoint
+else if (trim($uri, "/") == ($base . "/json")) {
+	$files = glob("./animals/$base/*");
+	$file = substr($files[array_rand($files)], 2);
+	header("Content-Type: application/json");
+	echo "{\"link\": \"$host$file\"}";
+	die();
+}
+# Pretty endpoint
+else if (trim($uri, "/") == ($base)) {
+	$files = glob("./animals/$base/*");
+	$file = substr($files[array_rand($files)], 2);
+	$singular = rtrim($base, "s");
+	$usingular = ucwords($singular);
+	header("Content-Type: text/html");
+	echo <<< EOT
+	<html lang='en'>
+	<head>
+		<title>Random $usingular!</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Galen Guyer">
+		<meta name="description" content="Get a random $singular!" />
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+				text-align: center;
+			}
+			img {
+				max-width: 90vw;
+				max-height: 70vh;
+			}
+		</style>
+	</head>
 
-<body>
-	<header>
-		<h1>Hey look! It's a random shitpost!</h1>
-	</header>
-	<p>$base</p>
+	<body>
+		<header>
+			<h1>Hey look! It's a random $singular!</h1>
+		</header>
+		<img src="$host$file"></img>
+		<p>Permalink: <a href="$host$file">$host$file</a></p>		
 	</body>
-</html>
-EOT;
+	</html>
+	EOT;
+	die();
+} 
 ?>
