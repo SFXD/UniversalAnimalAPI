@@ -1,15 +1,16 @@
 <?php
-$uri = $_SERVER['REQUEST_URI'];
-$base = explode('/', trim($uri, " /"))[0];
-
-if (getenv("PROTOCOL") !== null) {
+if (getenv("PROTOCOL") && getenv("PROTOCOL") != "") {
     $proto = getenv("PROTOCOL");
 }
 else {
     $proto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
 }
-$host = $proto . "://$_SERVER[HTTP_HOST]/";
+$host = $proto."://$_SERVER[HTTP_HOST]/";
 
+$uri = $_SERVER['REQUEST_URI'];
+$base = explode('/', trim($uri, " /"))[0];
+
+# If the animal folder doesn't exist, return a nice 404 page
 if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
 {
 	header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
@@ -17,6 +18,14 @@ if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
 	die();
 }
 
+#
+if (trim($uri, "/") == ($base . "/raw")) {
+	$files = glob("./animals/$base/*");
+	$file = substr($files[array_rand($files)], 2);
+	header("Content-Type: text/plain");
+	echo $host.$file;
+	die();
+}
 echo <<< EOT
 <html lang='en'>
 <head>
