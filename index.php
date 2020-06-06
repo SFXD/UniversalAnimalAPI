@@ -11,7 +11,7 @@ $uri = $_SERVER['REQUEST_URI'];
 $base = explode('/', trim($uri, " /"))[0];
 
 # If the animal folder doesn't exist, return a nice 404 page
-if (!(file_exists("./animals/$uri") && is_dir("./animals/$uri")))
+if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
 {
 	header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
 	include('404.php');
@@ -111,4 +111,7 @@ else if (trim($uri, "/") == ($base)) {
 	EOT;
 	die();
 } 
+header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+include('404.php');
+die();
 ?>
