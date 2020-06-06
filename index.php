@@ -23,7 +23,8 @@ if ($uri == "/"){
 	$cat_count = count(glob("./animals/cats/*"));
 	$possum_count = count(glob("./animals/possums/*"));
 	$raccoon_count = count(glob("./animals/raccoons/*"));
-	
+	$bird_count = count(glob("./animals/birds/*"));
+
 	echo <<<EOT
 	<html lang='en'>
 	<head>
@@ -52,6 +53,7 @@ if ($uri == "/"){
 	<p><a href="/cats/">$cat_count cats!</a></p>
 	<p><a href="/possums/">$possum_count possums!</a></p>
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
+	<p><a href="/birds/">$bird_count birds!</a></p>
 	</body>
 	</html>
 	EOT;
