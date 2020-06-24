@@ -115,7 +115,7 @@ else if (trim($uri, "/") == ($base)) {
 			}
 			img {
 				max-width: 90vw;
-				max-height: 60vh;
+				max-height: 80vh;
 			}
 			#footer {
 				position: absolute;
@@ -134,16 +134,16 @@ else if (trim($uri, "/") == ($base)) {
 
 	<body>
 	<div id="container">
-        <div id="header">
-			<h1>Hey look! It's a random $singular!</h1>
-        </div>
-        <div id="main">
+	<div id="header">
+		<h1>Hey look! It's a random $singular!</h1>
+	</div>
+	<div id="main">
 			<img src="$host$file"></img>
 			<p>Permalink: <a href="$host$file">$host$file</a></p>
-        </div>
-        <div id="footer">
-            <a href="./raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="./json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a>
-        </div>
+	</div>
+	<div id="footer">
+		<a href="./raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="./json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a>
+	</div>
 		<script data-goatcounter="https://randomanimals.goatcounter.com/count"
 			async src="//gc.zgo.at/count.js"></script>
 	</body>
