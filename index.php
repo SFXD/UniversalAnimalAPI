@@ -95,25 +95,57 @@ else if (trim($uri, "/") == ($base)) {
 		<meta name="author" content="Galen Guyer">
 		<meta name="description" content="Get a random $singular!" />
 		<style>
-			body {
+			html, body {
+				margin: 0px;
+				padding: 0px;
+				height: 100%;
+			}
+			h1 {
+				margin-top: 0px;
+				padding-top: 12px;
+			}
+			#container {
 				font-family: Arial, Helvetica, sans-serif;
 				text-align: center;
+				min-height: 100%;
+				position: relative;
+			}
+			#main {
+				padding-bottom: 32px;
 			}
 			img {
 				max-width: 90vw;
-				max-height: 70vh;
+				max-height: 60vh;
+			}
+			#footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 32px;
+				text-align: center;
+				color: #bebebe;
+			}
+			#footer a {
+				color: #bebebe;
+				text-decoration: none;
 			}
 		</style>
 	</head>
 
 	<body>
-		<header>
+	<div id="container">
+        <div id="header">
 			<h1>Hey look! It's a random $singular!</h1>
-		</header>
-		<img src="$host$file"></img>
-		<p>Permalink: <a href="$host$file">$host$file</a></p>
-	        <script data-goatcounter="https://randomanimals.goatcounter.com/count"
-		async src="//gc.zgo.at/count.js"></script>
+        </div>
+        <div id="main">
+			<img src="$host$file"></img>
+			<p>Permalink: <a href="$host$file">$host$file</a></p>
+        </div>
+        <div id="footer">
+            <a href="./raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="./json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a>
+        </div>
+		<script data-goatcounter="https://randomanimals.goatcounter.com/count"
+			async src="//gc.zgo.at/count.js"></script>
 	</body>
 	</html>
 	EOT;
