@@ -29,7 +29,7 @@ echo <<<EOF
 			}
 		</style>
 	</head>
-	
+
 	<body>
 		<header>
 			<h1>Oops, it looks like that file doesn't exist!</h1>
@@ -37,7 +37,9 @@ echo <<<EOF
         <h3>To make it up to you, here's a random animal</h3>
         <img src="$host$file"></img>
         <p>Permalink: <a href="$host$file">$host$file</a></p>
-		</body>
+        <script data-goatcounter="https://randomanimals.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+</body>
 </html>
 EOF;
 ?>

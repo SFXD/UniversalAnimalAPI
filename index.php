@@ -56,6 +56,8 @@ if ($uri == "/"){
 	<p><a href="/possums/">$possum_count possums!</a></p>
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
 	<p><a href="/birds/">$bird_count birds!</a></p>
+	<script data-goatcounter="https://randomanimals.goatcounter.com/count"
+        	async src="//gc.zgo.at/count.js"></script>
 	</body>
 	</html>
 	EOT;
@@ -109,12 +111,14 @@ else if (trim($uri, "/") == ($base)) {
 			<h1>Hey look! It's a random $singular!</h1>
 		</header>
 		<img src="$host$file"></img>
-		<p>Permalink: <a href="$host$file">$host$file</a></p>		
+		<p>Permalink: <a href="$host$file">$host$file</a></p>
+	        <script data-goatcounter="https://randomanimals.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
 	</body>
 	</html>
 	EOT;
 	die();
-} 
+}
 header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
 include('404.php');
 die();
