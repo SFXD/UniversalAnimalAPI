@@ -57,7 +57,7 @@ if ($uri == "/"){
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
 	<p><a href="/birds/">$bird_count birds!</a></p>
 	<script data-goatcounter="https://randomanimals.goatcounter.com/count"
-        	async src="//gc.zgo.at/count.js"></script>
+		async src="//gc.zgo.at/count.js"></script>
 	</body>
 	</html>
 	EOT;
@@ -113,7 +113,7 @@ else if (trim($uri, "/") == ($base)) {
 		<img src="$host$file"></img>
 		<p>Permalink: <a href="$host$file">$host$file</a></p>
 	        <script data-goatcounter="https://randomanimals.goatcounter.com/count"
-                async src="//gc.zgo.at/count.js"></script>
+		async src="//gc.zgo.at/count.js"></script>
 	</body>
 	</html>
 	EOT;
