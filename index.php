@@ -66,7 +66,7 @@ if ($uri == "/"){
 # Raw endpoint
 else if (trim($uri, "/") == ($base . "/raw")) {
 	$files = glob("./animals/$base/*");
-	$file = substr($files[array_rand($files)], 2);
+	$file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
 	header("Content-Type: text/plain");
 	echo $host.$file;
 	die();
@@ -74,7 +74,7 @@ else if (trim($uri, "/") == ($base . "/raw")) {
 # JSON endpoint
 else if (trim($uri, "/") == ($base . "/json")) {
 	$files = glob("./animals/$base/*");
-	$file = substr($files[array_rand($files)], 2);
+	$file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
 	header("Content-Type: application/json");
 	echo "{\"link\": \"$host$file\"}";
 	die();
@@ -82,7 +82,7 @@ else if (trim($uri, "/") == ($base . "/json")) {
 # Pretty endpoint
 else if (trim($uri, "/") == ($base)) {
 	$files = glob("./animals/$base/*");
-	$file = substr($files[array_rand($files)], 2);
+	$file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
 	$singular = rtrim($base, "s");
 	$usingular = ucwords($singular);
 	header("Content-Type: text/html");
@@ -115,7 +115,7 @@ else if (trim($uri, "/") == ($base)) {
 			}
 			img {
 				max-width: 90vw;
-				max-height: 80vh;
+				max-height: 70vh;
 			}
 			#footer {
 				position: absolute;
