@@ -83,7 +83,15 @@ else if (trim($uri, "/") == ($base . "/json")) {
 else if (trim($uri, "/") == ($base)) {
 	$files = glob("./animals/$base/*");
 	$file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
-	$singular = rtrim($base, "s");
+	$singulars = [
+		"dogs" => "dog",
+		"cats" => "cat",
+		"possums" => "possum",
+		"raccoons" => "raccoon",
+		"birds" => "bird",
+		"wolves" => "wolf"
+	]
+	$singular = $singulars[$base]
 	$usingular = ucwords($singular);
 	header("Content-Type: text/html");
 	echo <<< EOT
