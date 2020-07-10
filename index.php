@@ -92,8 +92,8 @@ else if (trim($uri, "/") == ($base)) {
 		"raccoons" => "raccoon",
 		"birds" => "bird",
 		"wolves" => "wolf"
-	]
-	$singular = $singulars[$base]
+	];
+	$singular = $singulars[$base];
 	$usingular = ucwords($singular);
 	header("Content-Type: text/html");
 	echo <<< EOT
