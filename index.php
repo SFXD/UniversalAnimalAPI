@@ -53,6 +53,7 @@ if ($uri == "/"){
 	<h3>Currently serving:</h3>
 	<p><a href="/dogs/">$dog_count dogs!</a></p>
 	<p><a href="/cats/">$cat_count cats!</a></p>
+	<p><a href="/wolves/">$cat_count wolves!</a></p>
 	<p><a href="/possums/">$possum_count possums!</a></p>
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
 	<p><a href="/birds/">$bird_count birds!</a></p>
