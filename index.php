@@ -22,6 +22,7 @@ if (!(file_exists("./animals/$base") && is_dir("./animals/$base")))
 if ($uri == "/"){
 	$dog_count = count(glob("./animals/dogs/*"));
 	$cat_count = count(glob("./animals/cats/*"));
+	$wolf_count = count(glob("./animals/wolves/*"));
 	$possum_count = count(glob("./animals/possums/*"));
 	$raccoon_count = count(glob("./animals/raccoons/*"));
 	$bird_count = count(glob("./animals/birds/*"));
@@ -53,7 +54,7 @@ if ($uri == "/"){
 	<h3>Currently serving:</h3>
 	<p><a href="/dogs/">$dog_count dogs!</a></p>
 	<p><a href="/cats/">$cat_count cats!</a></p>
-	<p><a href="/wolves/">$cat_count wolves!</a></p>
+	<p><a href="/wolves/">$wolf_count wolves!</a></p>
 	<p><a href="/possums/">$possum_count possums!</a></p>
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
 	<p><a href="/birds/">$bird_count birds!</a></p>
