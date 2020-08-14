@@ -158,7 +158,7 @@ else if (trim($uri, "/") == ($base)) {
 			<p>Permalink: <a href="$host$file">$host$file</a></p>
 	</div>
 	<div id="footer">
-		<a href="./raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="./json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a>
+		<a href="/$base/raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="/$base/json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a>
 	</div>
 		<script data-goatcounter="https://randomanimals.goatcounter.com/count"
 			async src="//gc.zgo.at/count.js"></script>
