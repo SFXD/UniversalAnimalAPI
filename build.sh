@@ -8,13 +8,15 @@ set -o errexit
 set -o nounset
 
 #set environment variables
-nginx_version="1.18.0"
-build_version="0.1"
+nginx_version="1.19.2"
+build_version="1.0"
 core_count="$(grep -c ^processor /proc/cpuinfo)"
 
 # create docker run image
 docker build \
 	--build-arg NGINX_VER="$nginx_version" \
 	--build-arg CORE_COUNT="$core_count" \
-	-t universalanimalapi:latest \
+	-t docker.galenguyer.com/chef/universalanimalapi:latest \
 	-f Dockerfile .
+
+docker push docker.galenguyer.com/chef/universalanimalapi:latest
