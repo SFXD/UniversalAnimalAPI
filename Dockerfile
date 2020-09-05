@@ -55,7 +55,7 @@ EXPOSE 80
 WORKDIR /var/www/html
 
 # install php and supervisor
-RUN apk add supervisor php7 php7-fpm
+RUN apk add supervisor php7 php7-fpm curl
 
 # configure php and php-fpm
 COPY configs/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
@@ -79,6 +79,9 @@ COPY configs/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 
 # homepage
 COPY *.php ./
+
+# set up health check
+HEALTHCHECK CMD curl --fail http://localhost/ || exit 1
 
 # add supervisord conf
 COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
