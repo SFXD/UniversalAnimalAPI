@@ -9,7 +9,6 @@ set -o nounset
 
 #set environment variables
 nginx_version="1.19.2"
-build_version="1.0"
 core_count="$(grep -c ^processor /proc/cpuinfo)"
 
 # create docker run image
