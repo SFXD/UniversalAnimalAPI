@@ -13,7 +13,7 @@ RUN tar xzf "/src/pcre/pcre-$PCRE_VER.tar.gz"
 
 # download nginx source
 WORKDIR /src/nginx
-ARG NGINX_VER="1.18.0"
+ARG NGINX_VER="1.19.2"
 RUN curl -L -O "http://nginx.org/download/nginx-$NGINX_VER.tar.gz"
 RUN tar xzf "nginx-$NGINX_VER.tar.gz"
 
