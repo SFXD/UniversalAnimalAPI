@@ -26,8 +26,9 @@ if ($uri == "/"){
 	$possum_count = count(glob("./animals/possums/*"));
 	$raccoon_count = count(glob("./animals/raccoons/*"));
 	$bird_count = count(glob("./animals/birds/*"));
+	$frog_count = count(glob("./animals/frogs/*"));
 
-	$total_count = $dog_count + $cat_count + $wolf_count + $possum_count + $raccoon_count + $bird_count;
+	$total_count = $dog_count + $cat_count + $wolf_count + $possum_count + $raccoon_count + $bird_count + $frog_count;
 
 	echo <<<EOT
 	<html lang='en'>
@@ -60,6 +61,7 @@ if ($uri == "/"){
 	<p><a href="/possums/">$possum_count possums!</a></p>
 	<p><a href="/raccoons/">$raccoon_count raccoons!</a></p>
 	<p><a href="/birds/">$bird_count birds!</a></p>
+	<p><a href="/frogs/">$frog_count frogs!</a></p>
 	<p>$total_count total pictures!</p>
 	<script data-goatcounter="https://randomanimals.goatcounter.com/count"
 		async src="//gc.zgo.at/count.js"></script>
@@ -85,11 +87,18 @@ else if (trim($uri, "/") == ($base . "/json")) {
 	die();
 }
 # Direct endpoint
-else if (trim($uri, "/") == ($base . "/direct")) {
+else if (strtok(trim($uri, "/"), '?') == ($base . "/direct")) {
 	$files = glob("./animals/$base/*");
-	$file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
-	header("Content-Type: image/jpg");
-	echo $host.$file;
+	$file = $files[array_rand($files)];
+	header("Content-Type: image/jpeg");
+	readfile($file);
+	die();
+}
+# Redirect endpoint
+else if (trim($uri, "/") == ($base . "/redirect")) {
+        $files = glob("./animals/$base/*");
+        $file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
+        header("Location: ".$host.$file, true, 301);
 	die();
 }
 # Pretty endpoint
@@ -163,7 +172,7 @@ else if (trim($uri, "/") == ($base)) {
 			<p>Permalink: <a href="$host$file">$host$file</a></p>
 	</div>
 	<div id="footer">
-		<a href="/$base/raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="/$base/json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a>
+		<a href="/$base/raw">/raw</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="/$base/json">/json</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href="https://github.com/galenguyer/UniversalAnimalApi">source</a> <a href="/$base/direct">/direct</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	</div>
 		<script data-goatcounter="https://randomanimals.goatcounter.com/count"
 			async src="//gc.zgo.at/count.js"></script>

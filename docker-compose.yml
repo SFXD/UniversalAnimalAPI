@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   randimals:
+    build: .
     image: universalanimalapi:latest
     container_name: randimals
     restart: always
@@ -9,6 +10,22 @@ services:
       - "80"
     volumes:
       - randimals:/var/www/html/animals
+    environment:
+      - VIRTUAL_HOST=animals.sfxd.org
+      - LETSENCRYPT_HOST=animals.sfxd.org
+      - LETSENCRYPT_EMAIL=w_i_n_d_y_o@hotmail.com
+      - HTTPS_METHOD=redirect
+    networks:
+      - nginx-proxy
 
 volumes:
   randimals:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/nextcloud-data/Windyo/files/SFXD/animals
+
+networks:
+  nginx-proxy:
+    external: true
