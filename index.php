@@ -26,9 +26,8 @@ if ($uri == "/"){
 	$possum_count = count(glob("./animals/possums/*"));
 	$raccoon_count = count(glob("./animals/raccoons/*"));
 	$bird_count = count(glob("./animals/birds/*"));
-	$baloo_count = count(glob("./animals/baloo/*"));
 
-	$total_count = $dog_count + $cat_count + $wolf_count + $possum_count + $raccoon_count + $bird_count + $baloo_count;
+	$total_count = $dog_count + $cat_count + $wolf_count + $possum_count + $raccoon_count + $bird_count;
 
 	echo <<<EOT
 	<html lang='en'>
@@ -55,7 +54,6 @@ if ($uri == "/"){
 		<h1>Hey look! It's a bunch of random animals!</h1>
 	</header>
 	<h3>Currently serving:</h3>
-	<p><a href="/baloo/">$baloo_count pics of my dog Baloo!</a></p>
 	<p><a href="/dogs/">$dog_count dogs!</a></p>
 	<p><a href="/cats/">$cat_count cats!</a></p>
 	<p><a href="/wolves/">$wolf_count wolves!</a></p>
@@ -86,6 +84,14 @@ else if (trim($uri, "/") == ($base . "/json")) {
 	echo "{\"link\": \"$host$file\"}";
 	die();
 }
+# Direct endpoint
+else if (trim($uri, "/") == ($base . "/direct")) {
+	$files = glob("./animals/$base/*");
+	$file = str_replace(" ", "%20", substr($files[array_rand($files)], 2));
+	header("Content-Type: image/jpg");
+	echo $host.$file;
+	die();
+}
 # Pretty endpoint
 else if (trim($uri, "/") == ($base)) {
 	$files = glob("./animals/$base/*");
@@ -97,7 +103,6 @@ else if (trim($uri, "/") == ($base)) {
 		"raccoons" => "raccoon",
 		"birds" => "bird",
 		"wolves" => "wolf",
-		"baloo" => "baloo"
 	];
 	$singular = $singulars[$base];
 	$usingular = ucwords($singular);
